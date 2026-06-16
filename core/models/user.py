@@ -10,6 +10,19 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from uploader.models import Image
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    foto = models.ForeignKey(
+        Image,
+        related_name='user_foto',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        default=None,
+    )
+
 
 class UserManager(BaseUserManager):
     """Manager for users."""

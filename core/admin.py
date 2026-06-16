@@ -63,6 +63,7 @@ class LivroAdmin(admin.ModelAdmin):
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     """Define the admin pages for users."""
+    (_('Personal Info'), {'fields': ('name', 'foto')}),
 
     ordering = ['id']
     list_display = ['email', 'name']
