@@ -12,6 +12,13 @@ class CompraViewSet(ModelViewSet):
     queryset = Compra.objects.all()
     serializer_class = CompraSerializer
 
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return CompraListSerializer
+        if self.action in ('create', 'update', 'partial_update'):
+            return CompraCreateUpdateSerializer
+        return CompraSerializer
+
     def get_queryset(self):
         usuario = self.request.user
         if usuario.is_superuser:
